@@ -13,17 +13,24 @@
 #include "pipex.h"
 int main(int argc, char *argv[],char *envp[] )
 {
-    char    *file1;
-    char    *file2;
+    int    file1;
+    int    file2;
     char    *command[2];
+    char    *msg;
+    
     if(!envp || !*envp)
         error("ERROR in envp input")
     if(argc != 5)
         error("ERROR not correct number of inputs")
-    file1 = argv[1];
+    file1 = open(argv[1], O_RDONLY);
     command[0] = argv[2];
     command[1] = argv[3];
-    file2 = argv[4;]
-    
+    file2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC);
+    if (file1 || file2 < 0)
+    {
+        msg  = "Error";
+        write(1,msg,ft_len(msg));
+        exit(     no se que es sts)
+    }
     return(pipex(file1, command, file2, envp));
 }
