@@ -24,5 +24,6 @@ int main(int argc, char *argv[],char *envp[] )
     command[0] = argv[2];
     command[1] = argv[3];
     file2 = argv[4;]
-    pipex(file1, command, file2, envp);
+    
+    return(pipex(file1, command, file2, envp));
 }
