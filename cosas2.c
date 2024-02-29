@@ -42,5 +42,5 @@ ft_get_path(char *command,char envp[])
 		j++;
 	}
 	perror("ERROR: command not found");
-	exit(0);
+	exit(1);
 }
