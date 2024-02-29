@@ -16,21 +16,17 @@ int main(int argc, char *argv[],char *envp[] )
     int    file1;
     int    file2;
     char    *command[2];
-    char    *msg;
     
     if(!envp || !*envp)
-        error("ERROR in envp input")
+        ft_error("ERROR in envp input", 1);
     if(argc != 5)
-        error("ERROR not correct number of inputs")
+        ft_error("ERROR not correct number of inputs", 1);
     file1 = open(argv[1], O_RDONLY);
     command[0] = argv[2];
     command[1] = argv[3];
     file2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC);
     if (file1 || file2 < 0)
-    {
-        msg  = "Error";
-        write(1,msg,ft_len(msg));
-        exit(1)
-    }
+        ft_error("Error", 1);
+
     return(pipex(file1, command, file2, envp));
 }
