@@ -30,7 +30,7 @@ int main(int argc, char *argv[],char *envp[] )
     {
         msg  = "Error";
         write(1,msg,ft_len(msg));
-        exit(     no se que es sts)
+        exit(0)
     }
     return(pipex(file1, command, file2, envp));
 }
