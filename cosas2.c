@@ -19,7 +19,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-char	ft_get_path(char *command,char envp[])
+ft_get_path(char *command,char envp[])
 {  
   char  *path;
   int    i;
@@ -41,6 +41,27 @@ char	ft_get_path(char *command,char envp[])
 			return (goodpath);
 		j++;
 	}
-	perror("ERROR: command not found");
+	ft_error("ERROR: command not found", 1);
 	exit(1);
+}
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+void	ft_error(char *msg, int status)
+{
+	int len;
+
+	len = 0;
+
+	write(1, msg, ft_strlen);
+	exit(status);
 }
