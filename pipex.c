@@ -1,5 +1,5 @@
 #include "pipex.h"
-void pipex(char *file1, char **commands, char *file2, char *envp))
+int pipex(int file1, char **commands, int file2, char *envp)
 {
     int     pipes[2];
     pid_t   father;
@@ -8,19 +8,20 @@ void pipex(char *file1, char **commands, char *file2, char *envp))
     pipe(pipes);
     father = fork();
     if (father <= -1)
-        error("ERROR the creation of father was unsuccessful");
+        ft_error("ERROR the creation of father was unsuccessful", 1);
     if (father == 0)
-        ft_father(file1,commands[0],pipes,envp);
+        ft_father(file1,commands[0], pipes, envp);
     child = fork();
     if (child <= -1)
-        error("ERROR the creation of child was unsuccessful");
+        ft_error("ERROR the creation of child was unsuccessful", 1);
     if (child == 0)
         ft_child(file2,commands[1],pipes,envp);
     close(pipes[1]);
     close(pipes[2]);
+    return(0);
 }
 
-int ft_father(char *file1,char **commands[0], int pipes, char *envp)
+int ft_father(int file1,char *commands, int *pipes, char **envp)
 {
     char *c;
     
@@ -31,13 +32,13 @@ int ft_father(char *file1,char **commands[0], int pipes, char *envp)
     ft_get_path(c, envp);
     if (execve(path, c, envp) == -1)
 	{
-		perror("Error execve");
+		ft_error("Error execve", 1);
 		exit(1);
 	}
     
     return(0);
 }
-int ft_child(file2,commands[1],pipes,envp)
+int ft_child( int file2, char *commands, int *pipes,char **envp)
 {
     char *c;
     dup2(pipes[2],STDIN_FILENO);
@@ -47,7 +48,7 @@ int ft_child(file2,commands[1],pipes,envp)
     ft_get_path(c, envp);
     if (execve(path, c, envp) == -1)
 	{
-		perror("Error execve");
+		ft_error("Error execve", 1);
 		exit(1);
 	}
 
