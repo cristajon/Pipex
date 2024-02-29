@@ -1,4 +1,4 @@
-SRCS	=	
+SRCS	=	main.c pipex.c cosas.c cosas2.c 
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -6,7 +6,7 @@ SRCSB	=
 
 OBJB	= ${SRCSB:.c=.o}
 
-NAME	= libft.a
+NAME	= pipex
 
 CC	= gcc
 
@@ -21,10 +21,6 @@ AR = ar rc
 
 ${NAME}:	${OBJS} ${OBJB}
 				${AR} ${NAME} ${OBJS}
-				ranlib ${NAME}
-
-bonus:		${OBJS} ${OBJB}
-				${AR}  ${NAME} ${OBJB}
 				ranlib ${NAME}
 
 all:		${NAME}
