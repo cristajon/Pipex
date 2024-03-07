@@ -1,5 +1,5 @@
 #include "pipex.h"
-int pipex(int file1, char **commands, int file2, char *envp)
+int pipex(int file1, char **commands, int file2, char *envp[])
 {
     int     pipes[2];
     pid_t   father;
@@ -16,20 +16,21 @@ int pipex(int file1, char **commands, int file2, char *envp)
         ft_error("ERROR the creation of child was unsuccessful", 1);
     if (child == 0)
         ft_child(file2,commands[1],pipes,envp);
+    close(pipes[0]);
     close(pipes[1]);
-    close(pipes[2]);
     return(0);
 }
 
-int ft_father(int file1,char *commands, int *pipes, char **envp)
+int ft_father(int file1,char *commands, int *pipes, char *envp[])
 {
-    char *c;
+    char **c;
+    char *path;
     
     dup2(pipes[1], STDOUT_FILENO);
     close(pipes[0]);
     dup2(file1, STDIN_FILENO);
-    c = ft_split(commands[0], ' ');
-    ft_get_path(c, envp);
+    c = ft_split(commands, ' ');
+    path = ft_get_path(c[0], envp);
     if (execve(path, c, envp) == -1)
 	{
 		ft_error("Error execve", 1);
@@ -38,14 +39,16 @@ int ft_father(int file1,char *commands, int *pipes, char **envp)
     
     return(0);
 }
-int ft_child( int file2, char *commands, int *pipes,char **envp)
+int ft_child( int file2, char *commands, int *pipes,char *envp[])
 {
-    char *c;
+    char **c;
+    char *path;
+
     dup2(pipes[2],STDIN_FILENO);
     close(pipes[1]);
     dup2(file2, STDOUT_FILENO);
-    c = ft_split(commands[1], ' ');
-    ft_get_path(c, envp);
+    c = ft_split(commands, ' ');
+    path = ft_get_path(c[1], envp);
     if (execve(path, c, envp) == -1)
 	{
 		ft_error("Error execve", 1);

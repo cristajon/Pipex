@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 20:52:38 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/15 20:52:38 by marvin           ###   ########.fr       */
+/*   Created: 2024/03/07 17:01:26 by ceaizkor          #+#    #+#             */
+/*   Updated: 2024/03/07 17:01:26 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
 int main(int argc, char *argv[],char *envp[] )
 {
     int    file1;
