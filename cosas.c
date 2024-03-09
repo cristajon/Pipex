@@ -100,4 +100,7 @@ char	**ft_split(char *s, char c)
     if (!sol)
         return (NULL);
     return (ft_enter(sol, s, c));
+
+
+    ///coger un split bueno el de mario puede que este mal
 }
