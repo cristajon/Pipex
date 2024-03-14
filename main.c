@@ -12,12 +12,18 @@
 
 #include "pipex.h"
 
+// void leaks()
+// {
+// 	system("leaks pipex");
+// }
+
 int	main(int argc, char *argv[], char *envp[] )
 {
 	int		file1;
 	int		file2;
 	char	*command[2];
 
+	atexit(leaks);
 	if (!envp || !*envp)
 		ft_error("ERROR in envp input\n", 1);
 	if (argc != 5)

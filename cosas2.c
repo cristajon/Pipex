@@ -6,7 +6,7 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:01:20 by ceaizkor          #+#    #+#             */
-/*   Updated: 2024/03/14 16:48:58 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:25:43 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_get_path(char *command, char *envp[])
 {
-	char	**path;
+	char	**p;
 	char	*goodpath;
 	int		i;
 	int		j;
@@ -25,11 +25,15 @@ char	*ft_get_path(char *command, char *envp[])
 		return (command);
 	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
 		i++;
-	path = ft_split(envp[i] + 5, ':');
+	if(!envp[i])
+		p = ft_split("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", ':');
+	
+	else
+		p = ft_split(envp[i] + 5, ':');
 	command = ft_strjoin("/", command);
-	while (path[j])
+	while (p[j])
 	{
-		goodpath = ft_strjoin(path[j], command);
+		goodpath = ft_strjoin(p[j], command);
 		if (access(goodpath, 0) == 0)
 			return (goodpath);
 		j++;
