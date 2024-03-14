@@ -1,3 +1,4 @@
 ./pipex infile comand1 comand2 outfile
  < infile cat | wc > outfile
  ./pipex infile cat wc outfile
+ aaaaaaaaaaaaaaaaa

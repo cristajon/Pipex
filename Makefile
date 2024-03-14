@@ -1,4 +1,4 @@
-SRCS	=	main.c pipex.c cosas.c cosas2.c 
+SRCS	=	main.c pipex.c cosas.c cosas2.c cosas3.c
 
 OBJS	= ${SRCS:.c=.o}
 

@@ -6,29 +6,28 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:01:20 by ceaizkor          #+#    #+#             */
-/*   Updated: 2024/03/07 17:58:03 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:48:58 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_get_path(char *command,char *envp[])
-{  
-  char  **path;
-  char	*goodpath;
-  int    i;
-  int    j;
+char	*ft_get_path(char *command, char *envp[])
+{
+	char	**path;
+	char	*goodpath;
+	int		i;
+	int		j;
 
-  i = 0;
-  j = 0;
-  
-  if (command[0] == '/' && access(command, 0) == 0)
+	i = 0;
+	j = 0;
+	if (command[0] == '/' && access(command, 0) == 0)
 		return (command);
 	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
-	  i++;
+		i++;
 	path = ft_split(envp[i] + 5, ':');
 	command = ft_strjoin("/", command);
-  while (path[j])
+	while (path[j])
 	{
 		goodpath = ft_strjoin(path[j], command);
 		if (access(goodpath, 0) == 0)
